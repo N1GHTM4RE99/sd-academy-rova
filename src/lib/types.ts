@@ -1,5 +1,5 @@
-export type ServiceType = 'brand-identity' | 'content-creation' | 'funnel-systems';
-export type Priority = 'urgent' | 'medium' | 'optional';
+export type ServiceType = 'social-media-setup' | 'account-protection' | 'telegram-management';
+export type Priority = 'high' | 'medium' | 'low';
 export type Level = 'Débutant' | 'Intermédiaire' | 'Avancé';
 export type ModuleStatus = 'locked' | 'in-progress' | 'completed';
 

@@ -137,7 +137,7 @@ export default function LessonPage() {
         <main className="pt-24 pb-12 px-4 max-w-7xl mx-auto">
           <div className="text-center">
             <h1 className="text-2xl font-bold font-syne text-white">Module non trouvé</h1>
-            <Link href="/" className="text-brand-identity hover:underline mt-4 inline-block">
+            <Link href="/" style={{ color: serviceColors[formation?.service || 'social-media-setup'] }}>
               Retour au dashboard
             </Link>
           </div>
@@ -170,16 +170,16 @@ export default function LessonPage() {
               <p className="text-gray-400">{formation.title}</p>
             </div>
 
-            {/* Professor Badge */}
-            <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-card-bg border border-card-border">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-identity to-purple-600 flex items-center justify-center">
+            {/* Professor Badge - API coming soon */}
+            {/* <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-card-bg border border-card-border">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#1DA1F2] to-[#0088CC] flex items-center justify-center">
                 <span className="text-white font-bold">PS</span>
               </div>
               <div>
-                <div className="text-sm font-medium text-white">Professeur Splinter</div>
+                <div className="text-sm font-medium text-white">Professeur</div>
                 <div className="text-xs text-gray-400">Expert Digital Marketing</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -198,16 +198,16 @@ export default function LessonPage() {
                   <div
                     className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                       message.role === 'user'
-                        ? 'bg-brand-identity text-white'
+                        ? 'bg-[#1DA1F2] text-white'
                         : 'bg-card-bg border border-card-border text-gray-200'
                     }`}
                   >
                     {message.role === 'assistant' && (
                       <div className="flex items-center gap-2 mb-2">
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-identity to-purple-600 flex items-center justify-center">
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#1DA1F2] to-[#0088CC] flex items-center justify-center">
                           <span className="text-[10px] text-white font-bold">PS</span>
                         </div>
-                        <span className="text-xs text-brand-identity font-medium">Professeur Splinter</span>
+                        <span style={{ color: serviceColors[formation.service] }} className="font-medium">Professeur</span>
                       </div>
                     )}
                     <div className="whitespace-pre-wrap text-sm leading-relaxed">
@@ -239,7 +239,7 @@ export default function LessonPage() {
               ))}
             </AnimatePresence>
 
-            {isLoading && (
+            {/* {isLoading && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -247,37 +247,40 @@ export default function LessonPage() {
               >
                 <div className="bg-card-bg border border-card-border rounded-2xl px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-identity to-purple-600 flex items-center justify-center">
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#1DA1F2] to-[#0088CC] flex items-center justify-center">
                       <span className="text-[10px] text-white font-bold">PS</span>
                     </div>
-                    <span className="text-xs text-brand-identity font-medium">Professeur Splinter réfléchit...</span>
+                    <span style={{ color: serviceColors[formation.service] }} className="font-medium">Professeur réfléchit...</span>
                   </div>
                 </div>
               </motion.div>
-            )}
+            )} */}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
-          <form onSubmit={handleSubmit} className="border-t border-card-border p-4">
+          {/* Input Area - Coming soon */}
+          {/* <form onSubmit={handleSubmit} className="border-t border-card-border p-4">
             <div className="flex gap-3">
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Pose une question à Splinter..."
-                className="flex-1 bg-card-bg border border-card-border rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-identity transition-colors"
+                placeholder="Pose une question au professeur..."
+                style={{ borderColor: serviceColors[formation.service] }}
                 disabled={isLoading}
               />
               <button
                 type="submit"
                 disabled={isLoading || !inputValue.trim()}
-                className="px-6 py-3 rounded-lg font-semibold bg-brand-identity text-white hover:bg-brand-identity/80 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                style={{ backgroundColor: serviceColors[formation.service] }} className="text-white hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 Envoyer
               </button>
             </div>
-          </form>
+          </form> */}
+          <div className="border-t border-card-border p-4 text-center">
+            <p className="text-gray-400">💬 Chat avec le professeur - Bientôt disponible</p>
+          </div>
         </div>
 
         {/* Quiz CTA */}
@@ -299,7 +302,7 @@ export default function LessonPage() {
               className="btn-primary inline-block"
               style={{
                 backgroundColor: serviceColors[formation.service],
-                color: formation.service === 'brand-identity' ? 'white' : 'black',
+                color: serviceColors[formation.service] === '#FF2D78' ? 'white' : 'black',
               }}
             >
               Passer le quiz →

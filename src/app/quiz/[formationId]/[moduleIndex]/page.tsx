@@ -159,7 +159,7 @@ export default function QuizPage() {
         <main className="pt-24 pb-12 px-4 max-w-7xl mx-auto">
           <div className="text-center">
             <h1 className="text-2xl font-bold font-syne text-white">Module non trouvé</h1>
-            <Link href="/" className="text-brand-identity hover:underline mt-4 inline-block">
+            <Link href="/" style={{ color: serviceColors[formation?.service || 'social-media-setup'] }}>
               Retour au dashboard
             </Link>
           </div>
@@ -213,7 +213,7 @@ export default function QuizPage() {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-              className="w-12 h-12 border-4 border-brand-identity border-t-transparent rounded-full mx-auto mb-4"
+              className="w-12 h-12 border-4 border-[#1DA1F2] border-t-transparent rounded-full mx-auto mb-4"
             />
             <p className="text-gray-400">Génération du quiz...</p>
           </div>
@@ -222,7 +222,7 @@ export default function QuizPage() {
             <p className="text-red-400 mb-4">{error}</p>
             <button
               onClick={generateQuiz}
-              className="btn-primary bg-brand-identity text-white"
+              className="btn-primary bg-[#1DA1F2] text-white"
             >
               Réessayer
             </button>
@@ -258,7 +258,7 @@ export default function QuizPage() {
                         onClick={() => handleAnswer(question.id, oIndex)}
                         className={`w-full text-left p-3 rounded-lg border transition-all ${
                           answers[question.id] === oIndex
-                            ? 'border-brand-identity bg-brand-identity/10 text-white'
+                            ? 'border-[#1DA1F2] bg-[#1DA1F2]/10 text-white'
                             : 'border-card-border text-gray-300 hover:border-gray-500'
                         }`}
                       >
@@ -282,7 +282,7 @@ export default function QuizPage() {
                 disabled={!canSubmit}
                 className={`w-full py-4 rounded-lg font-bold text-lg transition-all ${
                   canSubmit
-                    ? 'bg-brand-identity text-white hover:bg-brand-identity/80'
+                    ? 'bg-[#1DA1F2] text-white hover:bg-[#1DA1F2]/80'
                     : 'bg-card-bg text-gray-500 cursor-not-allowed'
                 }`}
               >

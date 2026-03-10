@@ -161,7 +161,7 @@ export default function ResultsPage() {
         <main className="pt-24 pb-12 px-4 max-w-7xl mx-auto">
           <div className="text-center">
             <h1 className="text-2xl font-bold font-syne text-white">Module non trouvé</h1>
-            <Link href="/" className="text-brand-identity hover:underline mt-4 inline-block">
+            <Link href="/" style={{ color: serviceColors[formation?.service || 'social-media-setup'] }}>
               Retour au dashboard
             </Link>
           </div>
@@ -185,7 +185,7 @@ export default function ResultsPage() {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-              className="w-12 h-12 border-4 border-brand-identity border-t-transparent rounded-full mx-auto mb-4"
+              className="w-12 h-12 border-4 border-[#1DA1F2] border-t-transparent rounded-full mx-auto mb-4"
             />
             <p className="text-gray-400">Calcul de vos résultats...</p>
           </div>
@@ -255,7 +255,7 @@ export default function ResultsPage() {
                 transition={{ delay: 0.4 }}
                 className="card p-6 mb-8"
               >
-                <h3 className="text-lg font-bold font-syne text-brand-identity mb-4">💡 Conseils personnalisés</h3>
+                <h3 style={{ color: serviceColors[formation.service] }}>💡 Conseils personnalisés</h3>
                 <ul className="space-y-2">
                   {result.tips.map((tip, i) => (
                     <li key={i} className="text-gray-300 text-sm">• {tip}</li>
@@ -321,7 +321,7 @@ export default function ResultsPage() {
                   className="flex-1 btn-primary text-center"
                   style={{
                     backgroundColor: serviceColors[formation.service],
-                    color: formation.service === 'brand-identity' ? 'white' : 'black',
+                    color: serviceColors[formation.service] === '#FF2D78' ? 'white' : 'black',
                   }}
                 >
                   Module suivant →
@@ -329,7 +329,7 @@ export default function ResultsPage() {
               ) : (
                 <Link
                   href={`/lesson/${formationId}/${moduleIndex}`}
-                  className="flex-1 btn-primary text-center bg-brand-identity text-white"
+                  className="flex-1 btn-primary text-center text-white"
                 >
                   Revoir la leçon
                 </Link>

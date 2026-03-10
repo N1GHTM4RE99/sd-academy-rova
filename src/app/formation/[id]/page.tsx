@@ -31,7 +31,7 @@ export default function FormationPage() {
         <main className="pt-24 pb-12 px-4 max-w-7xl mx-auto">
           <div className="text-center">
             <h1 className="text-2xl font-bold font-syne text-white">Formation non trouvée</h1>
-            <Link href="/" className="text-brand-identity hover:underline mt-4 inline-block">
+            <Link href="/" style={{ color: serviceColors['social-media-setup'] }}>
               Retour au dashboard
             </Link>
           </div>
@@ -89,8 +89,8 @@ export default function FormationPage() {
                 color: priorityColors[formation.priority],
               }}
             >
-              {formation.priority === 'urgent' ? 'Urgent' :
-               formation.priority === 'medium' ? 'Medium' : 'Optionnel'}
+              {formation.priority === 'high' ? 'Haute' :
+               formation.priority === 'medium' ? 'Moyenne' : 'Basse'}
             </span>
             <span className="text-gray-500">{formation.level}</span>
             <span className="text-gray-500">•</span>
@@ -212,7 +212,7 @@ export default function FormationPage() {
                           className="btn-primary"
                           style={{
                             backgroundColor: serviceColors[formation.service],
-                            color: formation.service === 'brand-identity' ? 'white' : 'black',
+                            color: serviceColors[formation.service] === '#FF2D78' ? 'white' : 'black',
                           }}
                         >
                           {moduleProgress.completed ? 'Revoir' : moduleProgress.attempts > 0 ? 'Réessayer' : 'Commencer'}

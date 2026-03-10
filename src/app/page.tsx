@@ -15,7 +15,7 @@ export default function Dashboard() {
     setMounted(true);
   }, []);
 
-  const services = ['brand-identity', 'content-creation', 'funnel-systems'] as const;
+  const services = ['social-media-setup', 'account-protection', 'telegram-management'] as const;
 
   // Calculate global stats
   const completedFormations = formations.filter((f) => {
@@ -70,10 +70,10 @@ export default function Dashboard() {
           className="mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-bold font-syne text-white mb-4">
-            Bienvenue, <span className="text-brand-identity">Ando</span>
+            Bienvenue, <span style={{ color: serviceColors['social-media-setup'] }}>Rova</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl">
-            Maîtrisez les 11 formations pour devenir expert en Brand Identity, Content Creation et Funnel Systems.
+            Maîtrisez les 8 formations pour devenir expert en Social Media Setup, Account Protection et Telegram Management.
           </p>
         </motion.div>
 
@@ -128,12 +128,12 @@ export default function Dashboard() {
           className="mb-12"
         >
           <div className="flex justify-between items-center mb-2">
-            <span className="text-white font-medium">Progression globale sur 11 formations</span>
+            <span className="text-white font-medium">Progression globale sur 8 formations</span>
             <span className="text-white font-bold">{globalProgress}%</span>
           </div>
           <div className="h-4 bg-card-bg rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-gradient-to-r from-brand-identity via-purple-500 to-content-creation"
+              className="h-full bg-gradient-to-r from-[#1DA1F2] via-[#FF2D78] to-[#0088CC]"
               initial={{ width: 0 }}
               animate={{ width: `${globalProgress}%` }}
               transition={{ duration: 1, ease: 'easeOut' }}
@@ -195,8 +195,8 @@ export default function Dashboard() {
                                   color: priorityColors[formation.priority],
                                 }}
                               >
-                                {formation.priority === 'urgent' ? 'Urgent' :
-                                 formation.priority === 'medium' ? 'Medium' : 'Optionnel'}
+                                {formation.priority === 'high' ? 'Haute' :
+                                 formation.priority === 'medium' ? 'Moyenne' : 'Basse'}
                               </span>
                             </div>
                             <span className="text-xs text-gray-500">{formation.duration}</span>
@@ -252,7 +252,7 @@ export default function Dashboard() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="mt-12 p-8 rounded-2xl bg-gradient-to-br from-brand-identity/20 via-purple-500/20 to-content-creation/20 border border-brand-identity/30"
+            className="mt-12 p-8 rounded-2xl bg-gradient-to-br from-[#1DA1F2]/20 via-[#FF2D78]/20 to-[#0088CC]/20 border border-[#1DA1F2]/30"
           >
             <div className="text-center">
               <div className="text-6xl mb-4">🏆</div>
@@ -263,7 +263,7 @@ export default function Dashboard() {
                 Tu as complété toutes les formations de SD Academy
               </p>
               <p className="text-gray-400">
-                Tu es maintenant un expert en Brand Identity, Content Creation et Funnel Systems
+                Tu es maintenant un expert en Social Media Setup, Account Protection et Telegram Management
               </p>
             </div>
           </motion.div>

@@ -2,6 +2,7 @@
 
 import { Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { serviceColors } from '@/lib/formations';
 
 function LoginForm() {
   const [password, setPassword] = useState('');
@@ -52,7 +53,7 @@ function LoginForm() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-card-bg border border-card-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-identity"
+              style={{ borderColor: serviceColors['social-media-setup'] }}
               placeholder="Entrez le mot de passe"
               required
             />
@@ -64,7 +65,7 @@ function LoginForm() {
 
           <button
             type="submit"
-            className="w-full py-3 rounded-lg font-semibold bg-brand-identity text-white hover:bg-brand-identity/80 transition-colors"
+            style={{ backgroundColor: serviceColors['social-media-setup'] }} className="w-full py-3 rounded-lg font-semibold text-white hover:opacity-80 transition-colors"
           >
             Se connecter
           </button>
