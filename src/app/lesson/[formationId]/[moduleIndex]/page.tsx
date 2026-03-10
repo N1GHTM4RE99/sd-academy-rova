@@ -17,6 +17,8 @@ export default function LessonPage() {
   const mod = formation?.modules[moduleIndex];
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [inputValue, setInputValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [lessonStarted, setLessonStarted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -70,6 +72,56 @@ export default function LessonPage() {
       };
       setMessages([errorMessage]);
     } finally {
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputValue.trim() || isLoading) return;
+
+    const userMessage: ChatMessage = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: inputValue,
+      timestamp: Date.now(),
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInputValue('');
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/professor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [...messages, userMessage].map(m => ({ role: m.role, content: m.content })),
+          useWebSearch: true,
+          systemPrompt: PROFESSOR_SYSTEM_PROMPT,
+        }),
+      });
+
+      const data = await response.json();
+
+      const assistantMessage: ChatMessage = {
+        id: Date.now().toString(),
+        role: 'assistant',
+        content: data.content || 'Désolé, une erreur est survenue. Veuillez réessayer.',
+        timestamp: Date.now(),
+      };
+
+      setMessages(prev => [...prev, assistantMessage]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const errorMessage: ChatMessage = {
+        id: Date.now().toString(),
+        role: 'assistant',
+        content: 'Désolé, une erreur est survenue. Veuillez réessayer plus tard.',
+        timestamp: Date.now(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -221,9 +273,25 @@ export default function LessonPage() {
               </button>
             </div>
           </form> */}
-          <div className="border-t border-card-border p-4 text-center">
-            <p className="text-gray-400">💬 Chat avec le professeur - Bientôt disponible</p>
-          </div>
+          <form onSubmit={handleSubmit} className="border-t border-card-border p-4">
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="Posez votre question à Rova..."
+                    className="flex-1 bg-background border border-card-border rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-primary"
+                    disabled={isLoading}
+                  />
+                  <button
+                    type="submit"
+                    disabled={isLoading || !inputValue.trim()}
+                    className="bg-primary hover:bg-primary/80 disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                  >
+                    {isLoading ? '...' : 'Envoyer'}
+                  </button>
+                </div>
+              </form>
         </div>
 
         {/* Quiz CTA */}
