@@ -17,8 +17,6 @@ export default function LessonPage() {
   const mod = formation?.modules[moduleIndex];
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [inputValue, setInputValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [lessonStarted, setLessonStarted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -39,7 +37,6 @@ export default function LessonPage() {
   }, [formation, module]);
 
   const startLesson = async () => {
-    setIsLoading(true);
     const prompt = getLessonPrompt(formationId, moduleIndex);
 
     try {
@@ -73,7 +70,6 @@ export default function LessonPage() {
       };
       setMessages([errorMessage]);
     } finally {
-      setIsLoading(false);
     }
   };
 
