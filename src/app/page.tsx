@@ -15,7 +15,7 @@ export default function Dashboard() {
     setMounted(true);
   }, []);
 
-  const services = ['social-media-setup', 'account-protection', 'telegram-management'] as const;
+  const services = ['seo-and-growth', 'paid-campaigns', 'llc-formation-and-structuring'] as const;
 
   // Calculate global stats
   const completedFormations = formations.filter((f) => {

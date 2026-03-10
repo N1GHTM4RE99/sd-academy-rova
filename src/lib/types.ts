@@ -1,4 +1,4 @@
-export type ServiceType = 'social-media-setup' | 'account-protection' | 'telegram-management';
+export type ServiceType = 'seo-and-growth' | 'paid-campaigns' | 'llc-formation-and-structuring';
 export type Priority = 'high' | 'medium' | 'low';
 export type Level = 'Débutant' | 'Intermédiaire' | 'Avancé';
 export type ModuleStatus = 'locked' | 'in-progress' | 'completed';
