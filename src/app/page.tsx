@@ -15,7 +15,7 @@ export default function Dashboard() {
     setMounted(true);
   }, []);
 
-  const services = ['seo-and-growth', 'paid-campaigns', 'llc-formation-and-structuring'] as const;
+  const services = ['social-media-setup', 'account-protection', 'telegram-management'] as const;
 
   // Calculate global stats
   const completedFormations = formations.filter((f) => {
@@ -73,7 +73,7 @@ export default function Dashboard() {
             Bienvenue, <span style={{ color: serviceColors['social-media-setup'] }}>Rova</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl">
-            Maîtrisez les 8 formations pour devenir expert en Social Media Setup, Account Protection et Telegram Management.
+            Maîtrisez les formations pour devenir expert en Social Media Setup, Account Protection et Telegram Management.
           </p>
         </motion.div>
 
